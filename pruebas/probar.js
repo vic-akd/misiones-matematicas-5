@@ -13,6 +13,7 @@ const res=[];const ok=(n,c,d='')=>{res.push((c?'PASA':'FALLA')+' · '+n+(d?' · 
  p.on('pageerror',e=>errs.push(e.message));p.on('console',m=>{if(m.type()==='error')errs.push(m.text())});
  await p.addInitScript(()=>{window.__abiertos=[];window.open=(u,t,f)=>{window.__abiertos.push([u,t,f]);return null}});
  await p.goto(URLP);
+ const V=await p.evaluate(()=>CONFIG.VERSION);
  ok('Carga sin errores',errs.length===0,errs.join(' | '));
  const n=await p.$$eval('#pick option',o=>o.length);ok('90 fichas en el selector',n===90,String(n));
  ok('Contador',(await p.textContent('#count'))==='15 temas · 90 fichas · 270 ejercicios');
@@ -20,8 +21,8 @@ const res=[];const ok=(n,c,d='')=>{res.push((c?'PASA':'FALLA')+' · '+n+(d?' · 
  ok('Cabecera con grado',(await p.textContent('.va-tit span'))==='5.º de primaria · México');
  ok('Título',(await p.title())==='Misiones de matemáticas · 5.º de primaria (México)');
  ok('Logo en cabecera',await p.$eval('.va-logo',i=>i.complete&&i.naturalWidth>0));
- ok('Sello en ficha',/Víctor Arellano · Misiones de matemáticas v1\.01 · 5\.º de primaria · México · CC BY-NC-SA 4\.0/.test(await p.textContent('.sello')));
- ok('Pie',/Víctor Arellano · Misiones de matemáticas v1\.01 · Versión HTML/.test(await p.textContent('.va-pie')));
+ ok('Sello en ficha',/Víctor Arellano · Misiones de matemáticas v1\.\d\d · 5\.º de primaria · México · CC BY-NC-SA 4\.0/.test(await p.textContent('.sello')));
+ ok('Pie',/Víctor Arellano · Misiones de matemáticas v1\.\d\d · Versión HTML/.test(await p.textContent('.va-pie')));
  // navegación y respuestas
  await p.click('#next');ok('Siguiente',(await p.$eval('#pick',s=>s.selectedIndex))===1);
  await p.click('#prev');ok('Anterior y deshabilitado al inicio',await p.$eval('#prev',x=>x.disabled));
@@ -44,7 +45,7 @@ const res=[];const ok=(n,c,d='')=>{res.push((c?'PASA':'FALLA')+' · '+n+(d?' · 
  ok('CSP connect-src none',/connect-src 'none'/.test(await p.$eval('meta[http-equiv="Content-Security-Policy"]',m=>m.content)));
  // Descargar
  const [dl]=await Promise.all([p.waitForEvent('download'),p.click('#descargar')]);
- const dp=await dl.path();ok('Descargar este archivo',dl.suggestedFilename()==='misiones-matematicas-v1.01-html.html'&&fs.readFileSync(dp).equals(fs.readFileSync(F)),dl.suggestedFilename());
+ const dp=await dl.path();ok('Descargar este archivo',dl.suggestedFilename()==='misiones-matematicas-'+V+'-html.html'&&fs.readFileSync(dp).equals(fs.readFileSync(F)),dl.suggestedFilename());
  ok('Sin conexiones de red',red.length===0,red.join(' '));
  // Recorrer las 90 fichas y medir desborde en impresión (ancho útil carta 741 px)
  await p.setViewportSize({width:741,height:1000});await p.emulateMedia({media:'print'});

@@ -3,7 +3,7 @@
 const CONFIG=Object.freeze({
  APP:'Misiones de matemáticas',
  GRADO:'5.º de primaria · México',
- VERSION:'v1.01',
+ VERSION:'v1.02',
  AUTOR:'Víctor Arellano',
  CONTACTO:'contacto@victorarellano.com',
  LICENCIA:{nombre:'CC BY-NC-SA 4.0',url:'https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es'},

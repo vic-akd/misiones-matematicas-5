@@ -1,8 +1,8 @@
-﻿Misiones de matemáticas · v1.01 · Notas para Víctor
+﻿Misiones de matemáticas · v1.02 · Notas para Víctor
 
 Construir la versión HTML:
   python3 herramientas/construir.py
-  Genera index.html (para GitHub Pages) y web/misiones-matematicas-v1.01-html.html.
+  Genera index.html (para GitHub Pages) y web/misiones-matematicas-v1.02-html.html.
 
 Probar:
   node pruebas/probar.js index.html
@@ -15,5 +15,6 @@ Nueva versión:
 
 Publicar en GitHub Pages:
   Settings > Pages > Deploy from a branch > main / (root).
+  Sitio publicado: https://vic-akd.github.io/misiones-matematicas/
 
 Solo existe la fase 1 (HTML). No hay portable, instalador ni Android.

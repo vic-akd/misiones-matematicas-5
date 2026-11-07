@@ -1,4 +1,4 @@
-# Ficha · Misiones de matemáticas · v1.01
+# Ficha · Misiones de matemáticas · v1.02
 
 Ficha deducida del código y confirmada por Víctor con HAZLO el 2026-11-07.
 
@@ -27,3 +27,4 @@ Grado: 5.º de primaria · México. Contenidos basados en matemáticas de 5.º S
 
 ## Cambios
 - 2026-11-07 · v1.01 · Ficha creada.
+- 2026-11-07 · v1.02 · Publicada en https://vic-akd.github.io/misiones-matematicas/ (excepción A). Víctor pide que le den crédito si lo modifican: se mantiene CC BY-NC-SA 4.0 y se agrega la frase de crédito.

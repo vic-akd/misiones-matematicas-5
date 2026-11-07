@@ -20,7 +20,7 @@ PASA · Adaptador bloquea destino no autorizado
 PASA · Etiquetas de los botones de donar
 PASA · Acerca de: aviso de privacidad y contacto
 PASA · CSP connect-src none
-PASA · Descargar este archivo · misiones-matematicas-v1.01-html.html
+PASA · Descargar este archivo · misiones-matematicas-v1.02-html.html
 PASA · Sin conexiones de red
 PASA · Ninguna ficha se desborda en carta
 PASA · PDF carta de 90 páginas · 90

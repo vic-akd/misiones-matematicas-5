@@ -1,6 +1,13 @@
 # Notas · Misiones de matemáticas
 
-**Fase actual:** 1 (HTML). **Versión vigente:** v1.01 (HTML). **Última aprobada por Víctor:** ninguna todavía.
+**Fase actual:** 1 (HTML). **Versión vigente:** v1.02 (HTML). **Última aprobada por Víctor:** ninguna todavía.
+
+## v1.02 · 2026-11-07
+- Origen: v1.01. Núcleo: revisión 1 (sin cambios de lógica ni contenido).
+- Estado: sin aprobar.
+- Cambios: frase de crédito en LICENCIA.md y LEEME.md; enlace del sitio en LEEME y ficha de la página; versión visible v1.02.
+- Sitio: https://vic-akd.github.io/misiones-matematicas/ (GitHub Pages, rama main, raíz).
+- Entregable: `web/misiones-matematicas-v1.02-html.html` (= `index.html`).
 
 ## v1.01 · 2026-11-07
 - Origen: entrega previa sin versión (`Misiones_de_matematicas_5.html`, 15 temas, 90 fichas).
@@ -13,6 +20,7 @@
 | Versión visible | package.json / .csproj | .exe | Android versionCode |
 |---|---|---|---|
 | v1.01 | 1.0.1 | 1.0.1.0 | 101 |
+| v1.02 | 1.0.2 | 1.0.2.0 | 102 |
 
 ## Fuentes
 - Programa SEP 5.º: transcripción de terceros del programa sintético Fase 5 (Plan 2022); el sitio oficial no se pudo abrir desde el entorno (403). NO VERIFICADO contra la fuente oficial.
