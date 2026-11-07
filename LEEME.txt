@@ -1,8 +1,8 @@
-﻿Misiones de matemáticas · v1.02 · Notas para Víctor
+﻿Misiones de matemáticas · v1.03 · Notas para Víctor
 
 Construir la versión HTML:
   python3 herramientas/construir.py
-  Genera index.html (para GitHub Pages) y web/misiones-matematicas-v1.02-html.html.
+  Genera index.html (para GitHub Pages) y web/misiones-matematicas-v1.03-html.html.
 
 Probar:
   node pruebas/probar.js index.html

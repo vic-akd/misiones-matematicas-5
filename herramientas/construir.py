@@ -49,7 +49,26 @@ dialog form{margin-top:8px;text-align:right}
 .va-ac{display:flex;gap:12px;align-items:center}.va-ac p{margin:0}
 .sello{display:inline-flex;align-items:center;gap:4px;margin-left:auto;color:#465269}
 nav{margin-top:10px}
-@media print{.va-cab,.va-pie,dialog{display:none!important}}'''
+@media print{.va-cab,.va-pie,dialog{display:none!important}}
+.int{margin-top:6px;padding:6px 8px;background:var(--va-superficie);border-radius:8px;font-size:14px}
+.int-c{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center;margin:4px 0;border:0;padding:0;min-width:0}
+.int-c legend{padding:0;margin-bottom:2px;font-weight:600}
+.int-c>span:first-child{font-weight:600}
+.int input[type=text]{font:inherit;font-size:16px;width:9em;max-width:100%;padding:4px 6px;border:1px solid #6b7890;border-radius:6px;background:#fff;color:var(--va-texto)}
+.int input[aria-invalid=true]{border:2px solid var(--va-peligro)}
+.int-op{display:inline-flex;gap:4px;align-items:center;padding:2px 8px;border:1px solid #c3ccda;border-radius:6px;background:#fff;cursor:pointer}
+.int-ord{display:inline-flex;gap:4px;align-items:center}.int-ord select{font-size:15px;padding:3px 4px}
+.int-acc{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+.int .va-btn{padding:4px 10px;font-size:14px}
+.int-msg{margin:4px 0 0;font-weight:600;min-height:0}.int-msg:empty{display:none}
+.int-msg.ok{color:#1d6b2f}.int-msg.no{color:var(--va-peligro)}
+.int-pista,.int-sol,.int-auto p{margin:4px 0 0;font-size:13.5px}
+.int-auto{margin-top:4px}
+.int[data-estado=bien]{outline:2px solid #1d6b2f}
+.int-marc{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;justify-content:space-between;margin:6px 0 0;padding:4px 10px;border:1px solid #cad5e4;border-radius:8px;font-size:14px}
+.int-marc .va-btn{padding:3px 10px;font-size:13px}
+@media screen{.resp{display:none}}
+@media print{.int,.int-marc{display:none!important}}'''
 head = head.replace('</style>', va + '\n</style>', 1)
 r = [(' .ans .figs{min-height:0}', ' .ans .figs{min-height:0}\n .ex .figs svg{max-height:30mm}\n .ans .figs svg{max-height:24mm;max-width:100%}'),
      (' .ex{margin:5px 0;padding:4px 9px}', ' .ex{margin:4px 0;padding:4px 9px}'),
@@ -61,7 +80,7 @@ for k, v in V.items(): cuerpo = cuerpo.replace('%%' + k + '%%', html.escape(v, q
 assert '%%' not in cuerpo
 js = ['src/nucleo/config.js', 'src/plataformas/html/adaptador.js', 'src/nucleo/figuras-base.js',
       'src/nucleo/modelo-fracciones.js', 'src/nucleo/figuras.js', 'src/nucleo/vistas-base.js',
-      'src/nucleo/modelo-temas.js', 'src/nucleo/vistas.js', 'src/nucleo/eventos.js']
+      'src/nucleo/modelo-temas.js', 'src/nucleo/modelo-respuestas.js', 'src/nucleo/logica-respuestas.js', 'src/nucleo/vistas.js', 'src/nucleo/eventos.js']
 out = head + '\n' + cuerpo + '\n<script>\n"use strict";\n' + '\n'.join(leer(p) for p in js) + '\n</script></body></html>\n'
 os.makedirs(os.path.join(R, 'web'), exist_ok=True)
 nombre = 'misiones-matematicas-' + V['VERSION'] + '-html.html'

@@ -47,6 +47,54 @@ const res=[];const ok=(n,c,d='')=>{res.push((c?'PASA':'FALLA')+' · '+n+(d?' · 
  const [dl]=await Promise.all([p.waitForEvent('download'),p.click('#descargar')]);
  const dp=await dl.path();ok('Descargar este archivo',dl.suggestedFilename()==='misiones-matematicas-'+V+'-html.html'&&fs.readFileSync(dp).equals(fs.readFileSync(F)),dl.suggestedFilename());
  ok('Sin conexiones de red',red.length===0,red.join(' '));
+ // Contestar en pantalla: respuesta correcta y errada en los 270 ejercicios
+ const rr=await p.evaluate(()=>{const mal=[],malErr=[],faltan=[];let total=0,marc=0;
+  const poner=(box,i,c,v)=>{if(c.k==='op'){box.querySelectorAll('input[data-c="'+i+'"]').forEach(x=>x.checked=x.value===v)}
+   else if(c.k==='ord'||c.k==='dos'){box.querySelectorAll('[data-c="'+i+'"]').forEach((x,k)=>x.value=v[k])}else box.querySelector('[data-c="'+i+'"]').value=v};
+  for(let k=0;k<90;k++){pick.selectedIndex=k;show();
+   const boxes=[...pages.querySelectorAll('.int')];if(boxes.length!==3)faltan.push(k+1);
+   boxes.forEach(box=>{total++;const cs=RESP[box.dataset.id];
+    // errada primero (si el ejercicio tiene algún campo calificable)
+    if(cs.some(c=>Resp.errada(c)!==null)){cs.forEach((c,i)=>{const e=Resp.errada(c);poner(box,i,c,e===null?Resp.ejemplo(c):e)});comprobar(box);
+     if(box.querySelector('.int-pista').hidden||box.dataset.estado==='bien')malErr.push(box.dataset.id);}
+    cs.forEach((c,i)=>poner(box,i,c,Resp.ejemplo(c)));comprobar(box);
+    if(box.dataset.estado!=='bien')mal.push(box.dataset.id+':'+box.querySelector('.int-msg').textContent);});
+   if(pages.querySelector('.int-cuenta').textContent==='3')marc++;}
+  pick.selectedIndex=0;show();return{total,mal,malErr,faltan,marc}});
+ ok('270 ejercicios con respuesta en pantalla',rr.total===270&&rr.faltan.length===0,rr.total+' '+rr.faltan.join(','));
+ ok('Cada respuesta correcta se acepta',rr.mal.length===0,rr.mal.join(' | '));
+ ok('Cada respuesta errada se rechaza y muestra la pista',rr.malErr.length===0,rr.malErr.join(','));
+ ok('Marcador 3 de 3 en las 90 fichas',rr.marc===90,String(rr.marc));
+ // Formas de escribir aceptadas y rechazadas
+ const fx=await p.evaluate(()=>{const C=Resp.campo,o=[];
+  const t=(c,v,esp)=>{const r=C(c,v);if(r!==esp)o.push(JSON.stringify(c)+' «'+v+'» → '+r)};
+  t({k:'n',v:2030040},'2,030,040',true);t({k:'n',v:2030040},'2030040',true);t({k:'n',v:2030040},'2 030 040',true);
+  t({k:'n',v:0.5},'.5',true);t({k:'n',v:0.5},'0,5',true);t({k:'n',v:0.5},'1/2',true);t({k:'n',v:0.5,dec:true},'1/2',false);
+  t({k:'n',v:8.75},'$8.75',true);t({k:'n',v:25},'25%',true);t({k:'n',v:7.5},'7.5 cm',true);t({k:'n',v:450},'45',false);t({k:'n',v:3},'',null);t({k:'n',v:3},'tres',false);
+  t({k:'f',v:'3/4'},'6/8',true);t({k:'f',v:'3/4'},'0.75',true);t({k:'f',v:'3/4'},'3 / 4',true);t({k:'f',v:'3/4'},'4/3',false);
+  t({k:'f',v:'8/5'},'1 3/5',true);t({k:'f',v:'3/4',exacta:true},'6/8',false);t({k:'f',v:'3/4',exacta:true},'3/4',true);
+  t({k:'dos',v:'3/4'},['6/8','3/4'],true);t({k:'dos',v:'3/4'},['3/4','3/4'],false);t({k:'dos',v:'3/4'},['0.75','3/4'],false);
+  t({k:'ent',a:0.25,b:0.26},'0.255',true);t({k:'ent',a:0.25,b:0.26},'0.26',false);
+  t({k:'tx',ok:['pino y av sol']},'Pino y Av. Sol',true);t({k:'tx',ok:['futbol']},'Fútbol',true);t({k:'tx',ok:['mango']},'la manzana',"auto");
+  t({k:'op',c:1},'1',true);t({k:'op',c:1},'0',false);t({k:'op',c:1},'',null);
+  return o});
+ ok('Formas de escribir números y fracciones',fx.length===0,fx.join(' | '));
+ // Flujo con clics reales en la ficha 1
+ await p.evaluate(()=>{pick.selectedIndex=0;show()});
+ const b1=p.locator('.int').nth(1);
+ await b1.locator('input').fill('2030041');await b1.locator('[data-accion="comprobar"]').click();
+ const pistaVis=await b1.locator('.int-pista').isVisible();const verOculto=await b1.locator('[data-accion="ver"]').isHidden();
+ await b1.locator('input').fill('2030042');await b1.locator('input').press('Enter');
+ const verVis=await b1.locator('[data-accion="ver"]').isVisible();
+ await b1.locator('input').fill('2,030,040');await b1.locator('[data-accion="comprobar"]').click();
+ ok('Clics: pista al 1.er error, «Ver respuesta» al 2.º, correcto al final',pistaVis&&verOculto&&verVis&&(await b1.locator('.int-msg').textContent()).includes('Correcto'));
+ const b0=p.locator('.int').nth(0);
+ await b0.locator('input').nth(0).fill('405203718');await b0.locator('input').nth(1).fill('cuatrocientos millones');await b0.locator('[data-accion="comprobar"]').click();
+ const autoVis=await b0.locator('.int-auto').isVisible();await b0.locator('[data-accion="bien"]').click();
+ const b2=p.locator('.int').nth(2);await b2.locator('label.int-op',{hasText:'No'}).click();await b2.locator('[data-accion="comprobar"]').click();
+ ok('Autoevaluación y marcador «3 de 3» con clics',autoVis&&(await p.textContent('.int-cuenta'))==='3');
+ await p.click('[data-accion="reiniciar"]');
+ ok('Volver a intentar la ficha limpia el marcador',(await p.textContent('.int-cuenta'))==='0'&&(await p.locator('.int input').first().inputValue())==='');
  // Recorrer las 90 fichas y medir desborde en impresión (ancho útil carta 741 px)
  await p.setViewportSize({width:741,height:1000});await p.emulateMedia({media:'print'});
  const mm=96/25.4;
@@ -56,7 +104,7 @@ const res=[];const ok=(n,c,d='')=>{res.push((c?'PASA':'FALLA')+' · '+n+(d?' · 
  ok('Ninguna ficha se desborda en carta',desb.length===0,desb.join(','));
  await p.evaluate(()=>{pages.innerHTML=markup.join('')});
  await p.pdf({path:path.join(OUT,'todo.pdf'),format:'Letter',margin:{top:'10mm',bottom:'10mm',left:'10mm',right:'10mm'},printBackground:true});
- try{const pg=+require('child_process').execSync('pdfinfo "'+path.join(OUT,'todo.pdf')+'"').toString().match(/Pages:\s+(\d+)/)[1];ok('PDF carta de 90 páginas',pg===90,String(pg))}catch(e){res.push('NO PROBADO · páginas del PDF (falta pdfinfo)')}
+ try{const pg=+require('child_process').execSync('pdfinfo "'+path.join(OUT,'todo.pdf')+'"').toString().match(/Pages:\s+(\d+)/)[1];ok('PDF carta de 90 páginas',pg===90,String(pg));const tx=require('child_process').execSync('pdftotext "'+path.join(OUT,'todo.pdf')+'" -').toString();ok('El PDF no trae casillas ni botones',!/Comprobar|Volver a intentar|Correctas:/.test(tx))}catch(e){res.push('NO PROBADO · páginas del PDF (falta pdfinfo)')}
  await p.emulateMedia({media:'screen'});
  // Móvil
  for(const w of [360,768]){await p.setViewportSize({width:w,height:800});await p.evaluate(()=>show());
@@ -66,7 +114,7 @@ const res=[];const ok=(n,c,d='')=>{res.push((c?'PASA':'FALLA')+' · '+n+(d?' · 
  await p.click('#btnAcerca');await p.screenshot({path:path.join(OUT,'acerca.png')});await p.keyboard.press('Escape');
  // Regresión de contenido contra la entrega anterior
  if(OLD){const q=await ctx.newPage();await q.goto('file://'+path.resolve(OLD));
-  const norm=s=>s.replace('<span class="badge">5.º · México · ','<span class="badge">5.º · ').replace(/<div class="legend">[\s\S]*$/,'');
+  const norm=s=>s.replace('<span class="badge">5.º · México · ','<span class="badge">5.º · ').replace(/<div class="legend">[\s\S]*$/,'').replace(/<div class="int"[\s\S]*?<!--\/int-->/g,'').replace(/<div class="int-marc"[\s\S]*?<!--\/marc-->/g,'');
   const a=await q.evaluate(()=>markup),bb=await p.evaluate(()=>markup);
   const dif=a.map((x,i)=>norm(x)===norm(bb[i])?0:i+1).filter(Boolean);
   ok('Regresión: 90 fichas idénticas a la entrega anterior (sin insignia ni leyenda)',a.length===bb.length&&dif.length===0,dif.join(','));}

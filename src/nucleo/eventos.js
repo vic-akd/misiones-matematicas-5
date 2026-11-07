@@ -34,5 +34,45 @@ const dlgDonar=document.querySelector("#dlgDonar"),dlgAcerca=document.querySelec
 [["#btnDonar",dlgDonar],["#pieDonar",dlgDonar],["#btnAcerca",dlgAcerca],["#pieAcerca",dlgAcerca]].forEach(([s,d])=>document.querySelector(s).addEventListener("click",()=>d.showModal()));
 document.querySelectorAll("[data-donar]").forEach(b=>b.addEventListener("click",()=>Adaptador.enlaces.abrirDonar(CONFIG.DONAR[b.dataset.donar])));
 
+
+/* Contestar en pantalla: delegación de eventos sobre la ficha visible */
+function valoresDe(box,i,c){
+ if(c.k==='op'){const r=box.querySelector('input[data-c="'+i+'"]:checked');return r?r.value:''}
+ if(c.k==='ord'||c.k==='dos')return [...box.querySelectorAll('[data-c="'+i+'"]')].map(x=>x.value);
+ return box.querySelector('[data-c="'+i+'"]').value;
+}
+function marcarCampo(box,i,r){box.querySelectorAll('[data-c="'+i+'"]').forEach(x=>{if(r===false)x.setAttribute('aria-invalid','true');else x.removeAttribute('aria-invalid')})}
+function contar(){const s=pages.querySelector('.sheet');if(!s)return;const k=s.querySelector('.int-cuenta');if(k)k.textContent=s.querySelectorAll('.int[data-estado="bien"]').length}
+function mensaje(box,txt,clase){const m=box.querySelector('.int-msg');m.textContent=txt;m.className='int-msg'+(clase?' '+clase:'')}
+function fallo(box){
+ const n=Number(box.dataset.intentos)+1;box.dataset.intentos=n;
+ box.querySelector('.int-pista').hidden=false;
+ if(n>=2)box.querySelector('[data-accion="ver"]').hidden=false;
+ mensaje(box,n>=2?'✖ Todavía no. Lee la pista o mira la respuesta.':'✖ Todavía no. Lee la pista e inténtalo otra vez.','no');
+}
+function comprobar(box){
+ if(!FUNCIONES.responderEnPantalla[PLATAFORMA])return;
+ const cs=RESP[box.dataset.id];
+ const rs=cs.map((c,i)=>Resp.campo(c,valoresDe(box,i,c)));
+ box.querySelector('.int-auto').hidden=true;
+ if(rs.some(r=>r===null)){rs.forEach((r,i)=>marcarCampo(box,i,true));mensaje(box,'Completa todas las casillas.','');return}
+ rs.forEach((r,i)=>marcarCampo(box,i,r));
+ if(rs.some(r=>r===false)){box.dataset.estado=box.dataset.estado==='bien'?'':box.dataset.estado||'';fallo(box);contar();return}
+ if(rs.some(r=>r==='auto')){box.querySelector('.int-auto').hidden=false;mensaje(box,'Revisa tú mismo: ¿dice lo mismo que la respuesta?','');return}
+ if(box.dataset.estado!=='visto')box.dataset.estado='bien';
+ mensaje(box,box.dataset.estado==='bien'?'✔ ¡Correcto!':'✔ Correcto, pero ya habías visto la respuesta.','ok');contar();
+}
+pages.addEventListener('click',ev=>{
+ const b=ev.target.closest('[data-accion]');if(!b||!pages.contains(b))return;
+ const box=b.closest('.int'),a=b.dataset.accion;
+ if(a==='reiniciar'){const k=!pages.classList.contains('hide-key');show();setKey(k);return}
+ if(!box)return;
+ if(a==='comprobar')comprobar(box);
+ else if(a==='ver'){box.querySelector('.int-sol').hidden=false;if(box.dataset.estado!=='bien')box.dataset.estado='visto';b.hidden=true;contar()}
+ else if(a==='bien'){box.querySelector('.int-auto').hidden=true;if(box.dataset.estado!=='visto')box.dataset.estado='bien';mensaje(box,box.dataset.estado==='bien'?'✔ ¡Bien!':'✔ Bien, pero ya habías visto la respuesta.','ok');contar()}
+ else if(a==='mal'){box.querySelector('.int-auto').hidden=true;fallo(box)}
+});
+pages.addEventListener('keydown',ev=>{if(ev.key==='Enter'&&ev.target.matches('.int input[type="text"]')){ev.preventDefault();comprobar(ev.target.closest('.int'))}});
+
 /* ========== ARRANQUE ========== */
 show();

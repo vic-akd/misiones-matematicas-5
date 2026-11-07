@@ -20,10 +20,19 @@ PASA · Adaptador bloquea destino no autorizado
 PASA · Etiquetas de los botones de donar
 PASA · Acerca de: aviso de privacidad y contacto
 PASA · CSP connect-src none
-PASA · Descargar este archivo · misiones-matematicas-v1.02-html.html
+PASA · Descargar este archivo · misiones-matematicas-v1.03-html.html
 PASA · Sin conexiones de red
+PASA · 270 ejercicios con respuesta en pantalla · 270 
+PASA · Cada respuesta correcta se acepta
+PASA · Cada respuesta errada se rechaza y muestra la pista
+PASA · Marcador 3 de 3 en las 90 fichas · 90
+PASA · Formas de escribir números y fracciones
+PASA · Clics: pista al 1.er error, «Ver respuesta» al 2.º, correcto al final
+PASA · Autoevaluación y marcador «3 de 3» con clics
+PASA · Volver a intentar la ficha limpia el marcador
 PASA · Ninguna ficha se desborda en carta
 PASA · PDF carta de 90 páginas · 90
+PASA · El PDF no trae casillas ni botones
 PASA · Sin desplazamiento horizontal a 360 px · 360
 PASA · Sin desplazamiento horizontal a 768 px · 768
 PASA · Regresión: 90 fichas idénticas a la entrega anterior (sin insignia ni leyenda)

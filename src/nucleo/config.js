@@ -3,7 +3,7 @@
 const CONFIG=Object.freeze({
  APP:'Misiones de matemáticas',
  GRADO:'5.º de primaria · México',
- VERSION:'v1.02',
+ VERSION:'v1.03',
  AUTOR:'Víctor Arellano',
  CONTACTO:'contacto@victorarellano.com',
  LICENCIA:{nombre:'CC BY-NC-SA 4.0',url:'https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es'},
@@ -21,6 +21,7 @@ const TIPO={html:'Versión HTML',portable:'Versión portable',instalable:'Versi�
 /* Disponibilidad de cada función por versión. */
 const FUNCIONES=Object.freeze({
  elegirFicha:{html:true,portable:true,instalable:true,android:true},
+ responderEnPantalla:{html:true,portable:true,instalable:true,android:true},
  mostrarRespuestas:{html:true,portable:true,instalable:true,android:true},
  imprimirPDF:{html:true,portable:true,instalable:true,android:true},
  descargarArchivo:{html:true,portable:false,instalable:false,android:false}

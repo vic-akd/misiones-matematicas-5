@@ -22,6 +22,23 @@ const icons={
  dat:'<path d="M14 40V26h8v14M28 40V14h8v26M42 40V22h8v18" fill="var(--tint)" stroke="var(--acc)" stroke-width="2"/>'
 };
 const icon2=e=>'<svg viewBox="0 0 64 50" aria-hidden="true"><rect x="2" y="2" width="60" height="46" rx="9" fill="#fff" stroke="var(--acc)" stroke-width="2"/>'+icons[e]+'</svg>';
+/* ---------- Contestar en pantalla (se oculta al imprimir) ---------- */
+function campoHTML(id,c,i){
+ const nom='r'+id.replace(/\./g,'_')+'_'+i,lab=t(c.l);
+ if(c.k==='op')return '<fieldset class="int-c"><legend>'+lab+'</legend>'+c.ops.map((o,k)=>'<label class="int-op"><input type="radio" name="'+nom+'" value="'+k+'" data-c="'+i+'"> '+t(o)+'</label>').join('')+'</fieldset>';
+ if(c.k==='ord')return '<fieldset class="int-c"><legend>'+lab+'</legend>'+c.c.map((_,k)=>'<label class="int-ord">'+(k+1)+'.º <select data-c="'+i+'" data-p="'+k+'"><option value="">—</option>'+c.ops.map((o,q)=>'<option value="'+q+'">'+o+'</option>').join('')+'</select></label>').join('')+'</fieldset>';
+ const inp=(p,al)=>'<input type="text" autocomplete="off" spellcheck="false" inputmode="'+(c.k==='n'||c.k==='ent'?'decimal':'text')+'" data-c="'+i+'"'+(p!=null?' data-p="'+p+'"':'')+' aria-label="'+al+'">';
+ if(c.k==='dos')return '<div class="int-c"><span>'+lab+'</span>'+inp(0,'Primer nombre')+'<span>=</span>'+inp(1,'Segundo nombre')+'</div>';
+ return '<label class="int-c"><span>'+lab+'</span>'+inp(null,Resp.textoPlano(c.l))+'</label>';
+}
+function intHTML(id,e){
+ const cs=RESP[id];if(!cs)throw Error('Falta la respuesta en pantalla de '+id);
+ return '<div class="int" data-id="'+id+'" data-intentos="0">'+cs.map((c,i)=>campoHTML(id,c,i)).join('')+
+ '<div class="int-acc"><button type="button" class="va-btn" data-accion="comprobar">Comprobar</button><button type="button" class="va-btn va-sec" data-accion="ver" hidden>Ver respuesta</button></div>'+
+ '<p class="int-msg" role="status" aria-live="polite"></p>'+
+ '<div class="int-auto" hidden><p>Compara con la respuesta: <b>'+t(e.a)+'</b></p><button type="button" class="va-btn" data-accion="bien">Lo tuve bien</button> <button type="button" class="va-btn va-sec" data-accion="mal">Lo tuve mal</button></div>'+
+ '<p class="int-pista" hidden><b>Pista:</b> '+t(e.h)+'</p><p class="int-sol" hidden><b>Respuesta:</b> '+t(e.a)+'</p></div><!--/int-->';
+}
 function make2(tema,ti,i){
  const row=tema.rows[i],n=tema.rows.length,s=stg(n,i);
  if(row.e.length!==3)throw Error("Cada ficha necesita 3 ejercicios: "+row.t);
@@ -29,10 +46,10 @@ function make2(tema,ti,i){
   const list=(e.fixed||j===0)?e.f:stagedS(e.f,s,j);
   const tip=(s===3&&j>0)?'<div class="tip"><b>Pista:</b> '+t(e.h)+'</div>':'';
   const fg=list.length?figs(list,e.col&&list[0].k!=='blank'):'<div class="figs"><div class="blank"><span>Haz aquí tus cuentas</span></div></div>';
-  return '<section class="ex"><h3><span class="num">'+(j+1)+'</span>'+titles[j]+'</h3><div class="q"><p>'+t(e.q)+'</p>'+tip+'<div class="resp">Respuesta:</div></div>'+fg+'</section>';
+  return '<section class="ex"><h3><span class="num">'+(j+1)+'</span>'+titles[j]+'</h3><div class="q"><p>'+t(e.q)+'</p>'+tip+'<div class="resp">Respuesta:</div>'+intHTML((ti+1)+'.'+(i+1)+'.'+(j+1),e)+'</div>'+fg+'</section>';
  }).join('');
  const keys=row.e.map((e,j)=>'<div class="ans">'+(e.k&&e.k.length?figs(e.k,e.col,true):'<div></div>')+'<div><p><b>'+(j+1)+'. '+t(e.a)+'</b></p><p><b>Pista</b> '+t(e.h)+'</p>'+track+'</div></div>').join('');
- return '<article class="sheet" data-eje="'+tema.eje+'"><div class="top"><header class="head"><div><span class="badge">5.º · México · '+EJE[tema.eje]+' · '+tema.title+' · '+(n===10?stageName(i):STAGE[i])+'</span><h2>'+row.t+'</h2><p class="meta">Tema '+(ti+1)+' · Ficha '+(i+1)+' de '+n+' &nbsp;·&nbsp; Nombre ______________________ &nbsp; Fecha ________</p></div>'+icon2(tema.eje)+'</header>'+exs+'</div>'+
+ return '<article class="sheet" data-eje="'+tema.eje+'"><div class="top"><header class="head"><div><span class="badge">5.º · México · '+EJE[tema.eje]+' · '+tema.title+' · '+(n===10?stageName(i):STAGE[i])+'</span><h2>'+row.t+'</h2><p class="meta">Tema '+(ti+1)+' · Ficha '+(i+1)+' de '+n+' &nbsp;·&nbsp; Nombre ______________________ &nbsp; Fecha ________</p></div>'+icon2(tema.eje)+'</header>'+'<div class="int-marc"><span role="status" aria-live="polite">Correctas: <b class="int-cuenta">0</b> de 3</span><button type="button" class="va-btn va-sec" data-accion="reiniciar">Volver a intentar la ficha</button></div><!--/marc-->'+exs+'</div>'+
  '<div class="key"><div class="cut">✂ Dobla o recorta por esta línea</div><h4>Respuestas para revisar juntos</h4>'+keys+legend+'</div></article>';
 }
 const IDX=[],markup=[];

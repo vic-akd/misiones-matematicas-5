@@ -8,6 +8,8 @@
 
 - 2026-11-07 · Que le den crédito si lo modifican: licencia CC BY-NC-SA 4.0 con frase de crédito explícita.
 
+- 2026-11-07 · Se debe poder contestar en pantalla, no solo leer e imprimir (v1.03).
+
 ## Corregido
 - 2026-11-07 · Pregunta de N3 F5 (fracciones v1): fila 3,5 cambiada a 3,10; clave 5/10.
 - 2026-11-07 · Ejercicio 2 ya no repite la operación del reto; retos con decisión observable.

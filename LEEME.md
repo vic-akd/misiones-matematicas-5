@@ -1,8 +1,10 @@
-# Misiones de matemáticas · 5.º de primaria (México) · v1.02
+# Misiones de matemáticas · 5.º de primaria (México) · v1.03
 
 Fichas imprimibles y gratuitas de matemáticas para 5.º de primaria en México: 15 temas, 90 fichas y 270 ejercicios, con solucionario en la mitad inferior de cada hoja.
 
 **Usarlo en línea:** https://vic-akd.github.io/misiones-matematicas/
+
+**Contestar en pantalla:** cada ejercicio tiene casillas y el botón «Comprobar». Si te equivocas aparece una pista; al segundo error puedes ver la respuesta. Nada se guarda.
 
 **Usarlo sin internet:** descarga `index.html` y ábrelo en cualquier navegador. Elige una ficha, muestra las respuestas e imprime una ficha, un tema o todo, en tamaño carta. Para PDF, elige «Guardar como PDF» al imprimir.
 
@@ -15,6 +17,8 @@ Los temas se basan en los contenidos de matemáticas de 5.º de la SEP (Fase 5, 
 | `src/nucleo/config.js` | Nombre, grado, versión, autor, licencia, Donar y funciones por versión. |
 | `src/nucleo/modelo-temas.js` | Ejercicios de los temas generales: `E(pregunta, figuras, respuesta, pista, opciones)`. |
 | `src/nucleo/modelo-fracciones.js` | Los tres temas de fracciones. |
+| `src/nucleo/modelo-respuestas.js` | Respuestas que se comprueban en pantalla (tipo de casilla por ejercicio). |
+| `src/nucleo/logica-respuestas.js` | Cómo se leen y califican las respuestas. |
 | `src/nucleo/figuras-base.js`, `figuras.js` | Aritmética y dibujos SVG. |
 | `src/nucleo/vistas-base.js`, `vistas.js` | Armado de cada ficha. |
 | `src/nucleo/eventos.js` | Navegación, respuestas, impresión, Donar y Acerca de. |
@@ -23,7 +27,7 @@ Los temas se basan en los contenidos de matemáticas de 5.º de la SEP (Fase 5, 
 | `herramientas/construir.py` | Une todo en un solo HTML. |
 | `pruebas/probar.js` | Pruebas automáticas. |
 
-**Regenerar** (Python 3): `python3 herramientas/construir.py` → `index.html` y `web/misiones-matematicas-v1.02-html.html`.
+**Regenerar** (Python 3): `python3 herramientas/construir.py` → `index.html` y `web/misiones-matematicas-v1.03-html.html`.
 
 **Probar** (Node y Playwright): `node pruebas/probar.js index.html`.
 

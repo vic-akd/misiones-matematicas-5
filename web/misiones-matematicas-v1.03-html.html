@@ -98,6 +98,25 @@ dialog form{margin-top:8px;text-align:right}
 .sello{display:inline-flex;align-items:center;gap:4px;margin-left:auto;color:#465269}
 nav{margin-top:10px}
 @media print{.va-cab,.va-pie,dialog{display:none!important}}
+.int{margin-top:6px;padding:6px 8px;background:var(--va-superficie);border-radius:8px;font-size:14px}
+.int-c{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center;margin:4px 0;border:0;padding:0;min-width:0}
+.int-c legend{padding:0;margin-bottom:2px;font-weight:600}
+.int-c>span:first-child{font-weight:600}
+.int input[type=text]{font:inherit;font-size:16px;width:9em;max-width:100%;padding:4px 6px;border:1px solid #6b7890;border-radius:6px;background:#fff;color:var(--va-texto)}
+.int input[aria-invalid=true]{border:2px solid var(--va-peligro)}
+.int-op{display:inline-flex;gap:4px;align-items:center;padding:2px 8px;border:1px solid #c3ccda;border-radius:6px;background:#fff;cursor:pointer}
+.int-ord{display:inline-flex;gap:4px;align-items:center}.int-ord select{font-size:15px;padding:3px 4px}
+.int-acc{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+.int .va-btn{padding:4px 10px;font-size:14px}
+.int-msg{margin:4px 0 0;font-weight:600;min-height:0}.int-msg:empty{display:none}
+.int-msg.ok{color:#1d6b2f}.int-msg.no{color:var(--va-peligro)}
+.int-pista,.int-sol,.int-auto p{margin:4px 0 0;font-size:13.5px}
+.int-auto{margin-top:4px}
+.int[data-estado=bien]{outline:2px solid #1d6b2f}
+.int-marc{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;justify-content:space-between;margin:6px 0 0;padding:4px 10px;border:1px solid #cad5e4;border-radius:8px;font-size:14px}
+.int-marc .va-btn{padding:3px 10px;font-size:13px}
+@media screen{.resp{display:none}}
+@media print{.int,.int-marc{display:none!important}}
 </style></head><body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
  <defs>
@@ -135,7 +154,7 @@ nav{margin-top:10px}
 </nav>
 <main id="pages" class="hide-key"></main>
 <footer class="va-pie">
- <span>Víctor Arellano · Misiones de matemáticas v1.02 · Versión HTML · Licencia <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" target="_blank" rel="noopener noreferrer">CC BY-NC-SA 4.0</a></span>
+ <span>Víctor Arellano · Misiones de matemáticas v1.03 · Versión HTML · Licencia <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" target="_blank" rel="noopener noreferrer">CC BY-NC-SA 4.0</a></span>
  <span><button class="va-link" id="pieAcerca">Acerca de</button> · <button class="va-link" id="pieDonar">Donar</button></span>
 </footer>
 <dialog id="dlgDonar" aria-labelledby="tDonar">
@@ -145,7 +164,7 @@ nav{margin-top:10px}
  <form method="dialog"><button class="va-btn va-sec">Cerrar</button></form>
 </dialog>
 <dialog id="dlgAcerca" aria-labelledby="tAcerca">
- <div class="va-ac"><img alt="" width="40" height="50" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNDMgMTgwIj48dGl0bGU+VsOtY3RvciBBcmVsbGFubzwvdGl0bGU+PHBhdGggZmlsbD0iI0MyMTUxQiIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNNzAuNDkgMTc2LjI1TDEzMy4wMCAxMDMuNDlMMTMyLjc0IDEwMi41NkwxMjkuNzEgMTAwLjE5TDcxLjI4IDU1LjY0TDcxLjM2IDU0LjM5TDEwMi4xNSAzMC4zNkw3MC40OSAxLjczTDM4LjUwIDMwLjIzTDY5LjY0IDU0LjM5TDY5LjcyIDU1LjYzTDkuMDAgMTAyLjYyTDkuMDAgMTAzLjUzWk03MS40OSAxNzAuMjJMNzEuMTIgMTY5LjQyTDcyLjAyIDE2OC4wMkwxMTYuMTYgMTAzLjExTDc0LjQ0IDYzLjUzTDcxLjA3IDU5LjY0TDEyNy4xMiAxMDIuNzdMMTI3LjEyIDEwMy40MVpNNzAuNDYgMTQ3LjM4TDMwLjg1IDEwMy4wMEwzMS4wMCAxMDIuMzhMNzAuNjQgNzAuMzVMMTA4LjE0IDEwMC45NEwxMTAuMTIgMTAyLjYyTDExMC4xMiAxMDMuNDBMNzEuNDQgMTQ2Ljg5Wk03MC43MCA1MS44N0w3MC4yNSA1MS40Mkw4OS41MCAzMC42Nkw4OS41MCAzMC4wOUw3MS4yMyA1LjU4TDcwLjYzIDMuODhMOTcuODAgMzAuNTJaTTcwLjQwIDQxLjg4TDU1LjM4IDMwLjYyTDU1Ljk3IDI5LjQ5TDcwLjIzIDE1LjI1TDg1LjAwIDMwLjAwTDg1LjAwIDMwLjczWiIvPjwvc3ZnPg=="><div><h2 id="tAcerca">Misiones de matemáticas</h2><p>5.º de primaria · México · v1.02 · Versión HTML</p></div></div>
+ <div class="va-ac"><img alt="" width="40" height="50" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNDMgMTgwIj48dGl0bGU+VsOtY3RvciBBcmVsbGFubzwvdGl0bGU+PHBhdGggZmlsbD0iI0MyMTUxQiIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNNzAuNDkgMTc2LjI1TDEzMy4wMCAxMDMuNDlMMTMyLjc0IDEwMi41NkwxMjkuNzEgMTAwLjE5TDcxLjI4IDU1LjY0TDcxLjM2IDU0LjM5TDEwMi4xNSAzMC4zNkw3MC40OSAxLjczTDM4LjUwIDMwLjIzTDY5LjY0IDU0LjM5TDY5LjcyIDU1LjYzTDkuMDAgMTAyLjYyTDkuMDAgMTAzLjUzWk03MS40OSAxNzAuMjJMNzEuMTIgMTY5LjQyTDcyLjAyIDE2OC4wMkwxMTYuMTYgMTAzLjExTDc0LjQ0IDYzLjUzTDcxLjA3IDU5LjY0TDEyNy4xMiAxMDIuNzdMMTI3LjEyIDEwMy40MVpNNzAuNDYgMTQ3LjM4TDMwLjg1IDEwMy4wMEwzMS4wMCAxMDIuMzhMNzAuNjQgNzAuMzVMMTA4LjE0IDEwMC45NEwxMTAuMTIgMTAyLjYyTDExMC4xMiAxMDMuNDBMNzEuNDQgMTQ2Ljg5Wk03MC43MCA1MS44N0w3MC4yNSA1MS40Mkw4OS41MCAzMC42Nkw4OS41MCAzMC4wOUw3MS4yMyA1LjU4TDcwLjYzIDMuODhMOTcuODAgMzAuNTJaTTcwLjQwIDQxLjg4TDU1LjM4IDMwLjYyTDU1Ljk3IDI5LjQ5TDcwLjIzIDE1LjI1TDg1LjAwIDMwLjAwTDg1LjAwIDMwLjczWiIvPjwvc3ZnPg=="><div><h2 id="tAcerca">Misiones de matemáticas</h2><p>5.º de primaria · México · v1.03 · Versión HTML</p></div></div>
  <p><b>Autor:</b> Víctor Arellano · <a href="mailto:contacto@victorarellano.com">contacto@victorarellano.com</a></p>
  <p><b>Licencia:</b> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" target="_blank" rel="noopener noreferrer">CC BY-NC-SA 4.0</a>. Puedes usarlo, imprimirlo y adaptarlo dando crédito, sin venderlo y compartiendo tus cambios con la misma licencia.</p>
  <p><b>Aviso de privacidad:</b> Esta aplicación no recaba, guarda, envía ni comparte datos personales. Lo que capturas se usa solo mientras la app está abierta y se pierde al cerrarla, salvo lo que tú exportes a PDF. Los botones de Donar abren Mercado Pago o PayPal en tu navegador; lo que hagas ahí se rige por los avisos de privacidad de esos servicios. Contacto: contacto@victorarellano.com.</p>
@@ -161,7 +180,7 @@ nav{margin-top:10px}
 const CONFIG=Object.freeze({
  APP:'Misiones de matemáticas',
  GRADO:'5.º de primaria · México',
- VERSION:'v1.02',
+ VERSION:'v1.03',
  AUTOR:'Víctor Arellano',
  CONTACTO:'contacto@victorarellano.com',
  LICENCIA:{nombre:'CC BY-NC-SA 4.0',url:'https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es'},
@@ -179,6 +198,7 @@ const TIPO={html:'Versión HTML',portable:'Versión portable',instalable:'Versi�
 /* Disponibilidad de cada función por versión. */
 const FUNCIONES=Object.freeze({
  elegirFicha:{html:true,portable:true,instalable:true,android:true},
+ responderEnPantalla:{html:true,portable:true,instalable:true,android:true},
  mostrarRespuestas:{html:true,portable:true,instalable:true,android:true},
  imprimirPDF:{html:true,portable:true,instalable:true,android:true},
  descargarArchivo:{html:true,portable:false,instalable:false,android:false}
@@ -921,6 +941,173 @@ TEMAS.push({eje:'dat',title:'Azar y frecuencias',rows:[
   E('Ruleta A: 3 de 4 partes iguales son rojas. Ruleta B: 5 de 8 partes iguales son rojas. ¿Con cuál es más fácil sacar rojo?',[{k:'spin',parts:['R','R','R','V']},{k:'spin',parts:['R','R','R','R','R','V','V','V']}],'Con la A: '+fs(F(3,4))+' = '+fs(F(6,8))+', que es mayor que '+fs(F(5,8))+'.','¿Cuántos octavos son '+fs(F(3,4))+'?')]}
 ]});
 
+/* ========== MODELO: respuestas para contestar en pantalla ==========
+ Clave 'tema.ficha.ejercicio' (orden de ALL). Cada ejercicio es una lista de campos:
+  n(v,l,o)  número (acepta 1,234 · 1234 · 0.5 · .5 · fracción con el mismo valor). o.dec: exige forma decimal.
+  f('a/b',l,o) fracción (acepta equivalentes y mixtos). o.exacta: exige ese numerador y denominador.
+  dos('a/b') dos nombres distintos para la misma fracción.
+  ent(a,b,l) número estrictamente entre a y b.
+  sn(c,l)   Sí / No (c=0 Sí, c=1 No).   op([...],c,l) opción múltiple.
+  ord([...],[índices en orden],l) ordenar opciones.
+  tx(l,ok)  texto libre: si coincide con ok se califica solo; si no, el alumno se autoevalúa con el solucionario. */
+const RESP=(()=>{
+const n=(v,l,o)=>Object.assign({k:'n',v,l:l||'Respuesta'},o||{});
+const f=(v,l,o)=>Object.assign({k:'f',v,l:l||'Fracción'},o||{});
+const dos=v=>({k:'dos',v,l:'Dos nombres'});
+const ent=(a,b,l)=>({k:'ent',a,b,l:l||'Un número'});
+const sn=(c,l)=>({k:'op',ops:['Sí','No'],c,l:l||'¿Sí o no?'});
+const op=(ops,c,l)=>({k:'op',ops,c,l:l||'Elige'});
+const ord=(ops,c,l)=>({k:'ord',ops,c,l:l||'Ordena'});
+const tx=(l,ok)=>({k:'tx',l,ok:ok||[]});
+const seq=(vs,f2,lab)=>vs.map((v,i)=>(f2||n)(v,(lab||['1.º','2.º','3.º','4.º'])[i]));
+const SF=vs=>seq(vs,(v,l)=>f(v,l));
+const CAV=(c,a,v)=>[n(c,'Caras'),n(a,'Aristas'),n(v,'Vértices')];
+const ABC=['A','B','C'],CR=['Norte','Sur','Este','Oeste'],CU=['Prisma rectangular','Pirámide cuadrangular','Prisma triangular'];
+return {
+'1.1.1':[n(405203718,'Con cifras'),tx('Con letra',['cuatrocientos cinco millones doscientos tres mil setecientos dieciocho'])],
+'1.1.2':[n(2030040)],'1.1.3':[sn(1,'¿Tiene razón?')],
+'1.2.1':[n(3600000)],'1.2.2':seq([98756432,98765432,123456789]),'1.2.3':[sn(1,'¿Se agotaron?'),n(450,'¿Cuántos faltan?')],
+'1.3.1':[n(8000,'¿Cuánto vale?')],'1.3.2':[n(5005000)],'1.3.3':[sn(0,'¿Llegará?'),n(8,'¿En qué salto?')],
+'1.4.1':[n(600300080,'Con cifras'),tx('Nombre',['seiscientos millones trescientos mil ochenta'])],'1.4.2':[tx('Sumandos',['40,000,000 + 7,000,000 + 20,000 + 5,000 + 600','40000000 + 7000000 + 20000 + 5000 + 600'])],'1.4.3':[n(3000400,'Lo correcto')],
+'1.5.1':[n(1270000)],'1.5.2':seq([1000000,1000005],null,['Primero','Segundo']),'1.5.3':[sn(0,'¿Lo lograron?')],
+'2.1.1':[n(0.37,'Con número',{dec:true}),tx('Con letra',['treinta y siete centesimos'])],'2.1.2':[n(0.45)],'2.1.3':[sn(1,'¿Tiene razón?')],
+'2.2.1':[n(0.7)],'2.2.2':seq([0.3,0.305,0.35]),'2.2.3':[op(['Ana','Bety'],1,'¿Quién ganó?')],
+'2.3.1':[n(0.007,'¿Cuánto vale?')],'2.3.2':[tx('Con letra',['tres enteros veinticinco diezmilesimos'])],'2.3.3':[sn(1,'¿Cumple?')],
+'2.4.1':[n(2.6)],'2.4.2':[ent(0.25,0.26)],'2.4.3':[op(['1.09','1.1'],1,'¿Cuál es mayor?')],
+'2.5.1':[n(0.08,'Decimal',{dec:true})],'2.5.2':seq([4.505,4.5,4.055,4.05]),'2.5.3':[op(['La A','La B'],0,'¿Cuál es más barata?')],
+'3.1.1':[f('3/4')],'3.1.2':[n(3,'Numerador: ___/6')],'3.1.3':[sn(1,'¿Tiene razón?')],
+'3.2.1':[f('2/6')],'3.2.2':[n(2,'Numerador: ___/6')],'3.2.3':[sn(0,'¿Llegaron a la meta?')],
+'3.3.1':[f('6/8')],'3.3.2':[n(6,'Numerador: ___/8')],'3.3.3':[op(['A','B','Iguales'],1,'¿Cuál avanzó más?')],
+'3.4.1':[f('2/5')],'3.4.2':SF(['3/10','1/2','4/5']),'3.4.3':[sn(1,'¿Tiene razón?')],
+'3.5.1':[f('4/6')],'3.5.2':[f('3/4','Simplificada',{exacta:true})],'3.5.3':[op(ABC,1,'¿Cuál no muestra {1/4}?')],
+'3.6.1':[f('9/12')],'3.6.2':[op(['&lt;','=','&gt;'],0,'{2/3} ___ {3/4}')],'3.6.3':[sn(1,'¿Le alcanza?')],
+'3.7.1':[f('4/10')],'3.7.2':SF(['1/2','2/3','5/6']),'3.7.3':[op(['Rojo','Azul','Iguales'],0,'¿Cuál tiene más?')],
+'3.8.1':[f('6/8')],'3.8.2':[n(2,'Numerador: ___/5')],'3.8.3':[sn(1,'¿Tiene razón?')],
+'3.9.1':[dos('3/4')],'3.9.2':SF(['1/2','7/12','2/3']),'3.9.3':[sn(0,'¿Gana?')],
+'3.10.1':[f('7/10')],'3.10.2':[op(['&lt;','=','&gt;'],2,'{5/6} ___ {3/4}')],'3.10.3':[sn(1,'¿Alcanza?')],
+'4.1.1':[n(800,'Resultado')],'4.1.2':[n(4.25)],'4.1.3':[sn(0,'¿Te alcanza?'),n(8.75,'¿Cuánto sobra? $')],
+'4.2.1':[n(1.3,'Resultado')],'4.2.2':[n(4100)],'4.2.3':[sn(1,'¿Queda al menos 1 m?')],
+'4.3.1':[n(0.55,'Resultado')],'4.3.2':[n(7.75)],'4.3.3':[op(ABC,1,'¿Qué cuenta?'),n(62.6,'Cambio $')],
+'4.4.1':[n(0.4,'Resultado')],'4.4.2':[n(3300)],'4.4.3':[n(6.85,'Resultado correcto')],
+'4.5.1':[n(0.28)],'4.5.2':[n(5.525)],'4.5.3':[sn(1,'¿Puede?')],
+'5.1.1':[f('4/8','En octavos',{exacta:true}),f('1/2','En medios',{exacta:true})],'5.1.2':[f('5/8','Resultado')],'5.1.3':[sn(0,'¿Cubren al menos {3/4}?')],
+'5.2.1':[dos('1/2')],'5.2.2':[f('1/2','Resultado')],'5.2.3':[sn(1,'¿Alcanza?')],
+'5.3.1':[f('5/8')],'5.3.2':[f('1/4','Resultado')],'5.3.3':[sn(1,'¿Es correcto?'),f('3/4','Resultado correcto')],
+'5.4.1':[f('3/10')],'5.4.2':[f('7/10','Resultado')],'5.4.3':[sn(0,'¿Queda suficiente?')],
+'5.5.1':[dos('2/3')],'5.5.2':[f('1/2','Resultado')],'5.5.3':[op(ABC,1,'¿Qué cuenta?'),f('5/8','Resultado')],
+'5.6.1':[f('5/8','Sombreada'),f('3/8','Falta')],'5.6.2':[f('5/8','Resultado')],'5.6.3':[op(['Sofía','Ernesto'],0,'¿Quién caminó más?'),f('1/12','¿Cuánto más?')],
+'5.7.1':[f('5/6','¿Dónde terminan?')],'5.7.2':[f('11/12','Resultado')],'5.7.3':[sn(1,'¿Alcanza?')],
+'5.8.1':[f('5/12')],'5.8.2':[f('1/12','Resultado')],'5.8.3':[f('7/8','Resultado correcto')],
+'5.9.1':[f('5/6')],'5.9.2':[f('5/12','Resultado')],'5.9.3':[sn(1,'¿Tiene razón?')],
+'5.10.1':[f('7/10')],'5.10.2':[f('1/2','Resultado')],'5.10.3':[sn(0,'¿Te pasas?')],
+'6.1.1':[n(24,'¿Cuántos cuadros?')],'6.1.2':[n(5)],'6.1.3':[sn(1,'¿Te alcanzan?')],
+'6.2.1':[n(2.5,'Resultado')],'6.2.2':[n(3.5,'Metros')],'6.2.3':[sn(0,'¿Más de 3.5 L?')],
+'6.3.1':[n(2.4,'Metros')],'6.3.2':[n(8.25)],'6.3.3':[sn(1,'¿Alcanza?')],
+'6.4.1':[n(8,'En cada fila')],'6.4.2':[n(2.25)],'6.4.3':[n(2.4,'Resultado correcto')],
+'6.5.1':[n(1,'Resultado')],'6.5.2':[n(10.3)],'6.5.3':[sn(1,'¿Alcanza?')],
+'7.1.1':[f('5/10'),n(0.5,'Decimal',{dec:true})],'7.1.2':[f('3/4','Resultado')],'7.1.3':[op(['La primera','La segunda','Iguales'],2,'¿Cuál tiene más?')],
+'7.2.1':[f('25/100'),n(0.25,'Decimal',{dec:true}),n(25,'Porcentaje %')],'7.2.2':[f('8/5','Resultado')],'7.2.3':[op(['El de 25%','El de {1/5}'],0,'¿Cuál es mayor?')],
+'7.3.1':[n(0.8,'Decimal',{dec:true}),f('4/5')],'7.3.2':[n(0.75,'Decimal',{dec:true})],'7.3.3':[sn(1,'¿Tiene razón?'),n(0.2,'{1/5} como decimal',{dec:true})],
+'7.4.1':[f('1/5'),n(20,'Porcentaje %')],'7.4.2':[n(9)],'7.4.3':[sn(1,'¿Ya alcanzan?'),n(20,'¿Cuánto falta? $')],
+'7.5.1':[f('1/8'),n(0.125,'Decimal',{dec:true})],'7.5.2':[n(1.5,'Litros')],'7.5.3':[op(['A','B','C','D'],3,'¿Cuál no es igual?')],
+'7.6.1':[f('1/10'),n(0.1,'Decimal',{dec:true}),n(10,'Porcentaje %')],'7.6.2':[f('9/8','Resultado')],'7.6.3':[sn(0,'¿Alcanza?')],
+'7.7.1':[f('3/4'),n(0.75,'Decimal',{dec:true})],'7.7.2':[n(7)],'7.7.3':[op(['En la A','En la B'],0,'¿Dónde ahorras más?')],
+'7.8.1':[f('3/8')],'7.8.2':[n(0.125,'Decimal',{dec:true})],'7.8.3':[op(['0.3','0.25'],0,'¿Cuál es mayor?')],
+'7.9.1':[f('3/4'),n(0.75,'Decimal',{dec:true}),n(75,'Porcentaje %')],'7.9.2':[n(4,'Resultado')],'7.9.3':[sn(1,'¿Puede?')],
+'7.10.1':[f('3/5'),n(0.6,'Decimal',{dec:true}),n(60,'Porcentaje %')],'7.10.2':[n(25)],'7.10.3':[op(['En la A','En la B'],0,'¿En cuál hay más?')],
+'8.1.1':[n(8,'Una paleta $')],'8.1.2':[n(72,'4 paletas $'),n(108,'6 paletas $')],'8.1.3':[sn(1,'¿Alcanzan?')],
+'8.2.1':[n(20,'Porcentaje %')],'8.2.2':[n(20)],'8.2.3':[op(['A','B'],0,'¿Quién tiene mejor puntería?')],
+'8.3.1':[n(10,'Porcentaje %'),n(30,'Dinero $')],'8.3.2':[n(119,'7 cuadernos $')],'8.3.3':[op(['En la A','En la B'],0,'¿Dónde es más barata?')],
+'8.4.1':[n(2,'Con puntos')],'8.4.2':[n(23)],'8.4.3':[n(30,'Resultado correcto')],
+'8.5.1':[n(4,'Kilos')],'8.5.2':[n(350,'10 boletos $')],'8.5.3':[op(['La A','La B'],1,'¿Cuál sabe más?')],
+'9.1.1':CAV(6,12,8),'9.1.2':CAV(5,8,5),'9.1.3':[op(['Prisma','Pirámide'],1,'¿Qué es?')],
+'9.2.1':CAV(5,9,6),'9.2.2':[n(6,'Caras laterales'),n(7,'Caras en total')],'9.2.3':[op(ABC,0,'¿Cuál arma un cubo?')],
+'9.3.1':[op(CU,0,'¿Qué cuerpo?')],'9.3.2':[n(7,'Caras')],'9.3.3':[op(['Prisma','Pirámide'],0,'¿Qué es?'),n(12,'Aristas')],
+'9.4.1':[op(CU,1,'¿Qué cuerpo?')],'9.4.2':[n(6,'Aristas')],'9.4.3':[op(['Prisma','Pirámide'],0,'El cubo es un…')],
+'9.5.1':CAV(4,6,4),'9.5.2':CAV(8,18,12),'9.5.3':[sn(1,'¿Te alcanzan?'),n(1,'¿Cuántos triángulos faltan?')],
+'10.1.1':[n(6,'Diámetro cm')],'10.1.2':[n(5,'Radio cm')],'10.1.3':[sn(1,'¿Cabe?')],
+'10.2.1':[n(4,'Radio cm')],'10.2.2':[n(9,'Diámetro cm')],'10.2.3':[op(['El borde','Toda la cara'],0,'La circunferencia es…'),op(['El círculo','La circunferencia'],0,'Al pintar la cara pintas…')],
+'10.3.1':[op(ABC,0,'¿Qué punto?')],'10.3.2':[n(3.5,'Radio cm')],'10.3.3':[op(['Dentro','Fuera'],1,'La banca queda…')],
+'10.4.1':[n(8,'Diámetro cm')],'10.4.2':[n(7.5,'Radio cm')],'10.4.3':[op(['El radio es el doble del diámetro','El diámetro es el doble del radio'],1,'Lo correcto es…')],
+'10.5.1':[op(['AB','CD'],0,'¿Cuál es diámetro?')],'10.5.2':[n(7.8,'La fila mide cm')],'10.5.3':[sn(0,'¿Caben?')],
+'11.1.1':[tx('Esquina',['roble y mar','mar y roble'])],'11.1.2':[n(4,'Cuadras')],'11.1.3':[sn(1,'¿Tiene razón?')],
+'11.2.1':[tx('Lugar',['el parque','parque'])],'11.2.2':[n(3,'Cuadras')],'11.2.3':[op(['A','B'],0,'¿Cuál es más corta?')],
+'11.3.1':[tx('Lugar',['el mercado','mercado'])],'11.3.2':[tx('Camino',['2 al norte y 1 al oeste','2 norte 1 oeste','2n 1o'])],'11.3.3':[sn(0,'¿Es cierto?')],
+'11.4.1':[op(CR,3,'Vas hacia el…')],'11.4.2':[n(4,'Cuadras')],'11.4.3':[op(CR,2,'El Mercado está al…')],
+'11.5.1':[tx('Calles',['pino y av sol','pino y avenida sol','av sol y pino','avenida sol y pino','pino y sol','sol y pino'])],'11.5.2':[n(4,'Cuadras')],'11.5.3':[sn(1,'¿Llegas a tiempo?')],
+'12.1.1':[n(7.5,'cm'),n(75,'mm')],'12.1.2':[n(3500,'Metros')],'12.1.3':[sn(1,'¿Se pasan?')],
+'12.2.1':[n(750,'ml'),n(0.75,'L')],'12.2.2':[n(2.5,'Kilogramos')],'12.2.3':[sn(1,'¿Alcanza?')],
+'12.3.1':[n(1500,'ml')],'12.3.2':[n(4250,'Metros')],'12.3.3':[sn(1,'¿Puede pasar?')],
+'12.4.1':[n(12.3,'cm'),n(123,'mm')],'12.4.2':[ord(['1.2 km','950 m','1,050 m'],[1,2,0],'De menor a mayor')],'12.4.3':[sn(1,'¿Tiene razón?')],
+'12.5.1':[n(1.25,'Litros')],'12.5.2':[n(750,'Kilogramos')],'12.5.3':[sn(0,'¿La cumple?')],
+'13.1.1':[n(16,'Perímetro cm'),n(15,'Área cm²')],'13.1.2':[n(36,'Área m²')],'13.1.3':[op(['A','B','Iguales'],1,'¿Más área?'),op(['A','B','Iguales'],2,'¿Más perímetro?')],
+'13.2.1':[n(12,'Área cm²')],'13.2.2':[n(27,'Perímetro cm')],'13.2.3':[sn(0,'¿Alcanza?')],
+'13.3.1':[n(15,'Área cm²')],'13.3.2':[n(27,'Área cm²')],'13.3.3':[sn(1,'¿Basta?')],
+'13.4.1':[n(14,'Área cm²'),n(18,'Perímetro cm')],'13.4.2':[n(24.5,'Área m²')],'13.4.3':[n(20,'Área correcta cm²')],
+'13.5.1':[sn(1,'¿Miden lo mismo?')],'13.5.2':[n(27,'Perímetro m')],'13.5.3':[sn(1,'¿Alcanzan?'),n(15,'Cajas necesarias')],
+'14.1.1':[tx('Moda',['mango'])],'14.1.2':[n(22,'Alumnos')],'14.1.3':[sn(0,'¿Tiene razón?')],
+'14.2.1':[n(2,'Goles')],'14.2.2':[n(1,'Con 1 gol'),n(3,'Con 2 goles'),n(1,'Con 3 goles'),n(1,'Con 4 goles')],'14.2.3':[sn(1,'¿Tiene razón?')],
+'14.3.1':[tx('Deportes',['basquet y voleibol','voleibol y basquet','basquetbol y voleibol','voleibol y basquetbol'])],'14.3.2':[n(8,'Votos más')],'14.3.3':[tx('Deporte',['futbol'])],
+'14.4.1':[n(10,'Libros')],'14.4.2':[n(28,'Libros')],'14.4.3':[tx('La moda es',['martes','el martes'])],
+'14.5.1':[tx('Moda',['blanco y gris','gris y blanco'])],'14.5.2':[n(28,'Autos')],'14.5.3':[sn(0,'¿Es cierto?')],
+'15.1.1':[op(['Rojo','Azul','Verde'],0,'¿Qué color?')],'15.1.2':[f('1/4','Frecuencia relativa')],'15.1.3':[op(ABC,1,'¿Cuál es de azar?')],
+'15.2.1':[n(3,'Resultados')],'15.2.2':[n(16,'Veces sol'),f('8/15','Frecuencia relativa')],'15.2.3':[sn(1,'¿Tiene razón?')],
+'15.3.1':[op(['Azules','Blancas'],0,'¿De cuál hay más?')],'15.3.2':[f('1/4','Frecuencia relativa')],'15.3.3':[op(['Azul','Blanca'],0,'¿Cuál es más fácil?')],
+'15.4.1':[f('5/8')],'15.4.2':[f('13/20','Fracción'),n(0.65,'Decimal',{dec:true})],'15.4.3':[sn(1,'¿Tiene razón?')],
+'15.5.1':[n(6,'Resultados')],'15.5.2':[n(9,'Absoluta'),f('3/20','Relativa')],'15.5.3':[op(['La A','La B'],0,'¿Con cuál?')]
+};
+})();
+
+/* ========== LÓGICA: comprobar respuestas en pantalla ==========
+ No guarda nada: el avance vive solo en la ficha abierta. */
+const Resp=(()=>{
+ const norm=s=>String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9ñ,.\s]/g,' ').replace(/(\d),(\d{3})/g,'$1$2').replace(/[.,]+(\s|$)/g,'$1').replace(/\s+/g,' ').trim();
+ const textoPlano=s=>String(s).replace(/\{(\d+)\/(\d+)\}/g,'$1/$2').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/<[^>]+>/g,'');
+ /* Lee un número escrito por un niño: 1,234 · 1234 · 0.5 · .5 · 0,5 · 3/4 · 1 3/4 · $8.75 · 25% · 7.5 cm */
+ function leer(s){
+  s=String(s).replace(/[$%]/g,' ').replace(/[^\d.,\/\s-]/g,' ').trim().replace(/\s*\/\s*/g,'/').replace(/\s+/g,' ');
+  let m;
+  if((m=s.match(/^(\d+) (\d+)\/(\d+)$/))&&+m[3]>0)return{v:+m[1]+m[2]/m[3],fr:{n:+m[1]*m[3]+ +m[2],d:+m[3]},mixto:true};
+  if((m=s.match(/^(\d+)\/(\d+)$/))&&+m[2]>0)return{v:m[1]/m[2],fr:{n:+m[1],d:+m[2]}};
+  s=s.replace(/\s/g,'');
+  if(/^\d{1,3}(,\d{3})+(\.\d+)?$/.test(s))s=s.replace(/,/g,'');
+  else if(/^\d*,\d+$/.test(s))s=s.replace(',','.');
+  if(/^(\d+\.?\d*|\.\d+)$/.test(s))return{v:parseFloat(s),fr:null};
+  return null;
+ }
+ const frac=v=>{const[a,b]=v.split('/').map(Number);return{n:a,d:b}};
+ const igual=(p,F)=>p.fr?p.fr.n*F.d===F.n*p.fr.d:Math.abs(p.v-F.n/F.d)<1e-9;
+ /* Devuelve true, false, 'auto' (autoevaluación) o null (vacío) */
+ function campo(c,val){
+  if(c.k==='op')return val===''?null:Number(val)===c.c;
+  if(c.k==='ord')return val.some(x=>x==='')?null:val.every((x,i)=>Number(x)===c.c[i]);
+  if(c.k==='dos'){if(val.some(x=>x.trim()===''))return null;const F=frac(c.v),p=val.map(leer);
+   return p.every(x=>x&&x.fr&&igual(x,F))&&!(p[0].fr.n===p[1].fr.n&&p[0].fr.d===p[1].fr.d);}
+  if(String(val).trim()==='')return null;
+  if(c.k==='tx'){const v=norm(val);return c.ok.some(o=>norm(o)===v)?true:'auto';}
+  const p=leer(val);if(!p)return false;
+  if(c.k==='n')return Math.abs(p.v-c.v)<1e-9&&!(c.dec&&p.fr);
+  if(c.k==='ent')return p.v>c.a&&p.v<c.b;
+  if(c.k==='f'){const F=frac(c.v);return c.exacta?!!(p.fr&&!p.mixto&&p.fr.n===F.n&&p.fr.d===F.d):igual(p,F);}
+  return false;
+ }
+ /* Una respuesta correcta de cada campo, para pruebas */
+ function ejemplo(c){
+  if(c.k==='op')return String(c.c);if(c.k==='ord')return c.c.map(String);
+  if(c.k==='dos'){const F=frac(c.v);return[c.v,(F.n*2)+'/'+(F.d*2)];}
+  if(c.k==='tx')return c.ok[0]||'cualquier texto';if(c.k==='ent')return String((c.a+c.b)/2);
+  return String(c.v);
+ }
+ /* Una respuesta incorrecta de cada campo, para pruebas */
+ function errada(c){
+  if(c.k==='op')return String((c.c+1)%c.ops.length);if(c.k==='ord')return c.c.slice().reverse().map(String);
+  if(c.k==='dos')return[c.v,c.v];if(c.k==='tx')return null;if(c.k==='ent')return String(c.b+1);
+  if(c.k==='f'){const F=frac(c.v);return (F.n+1)+'/'+F.d;}
+  return String(c.v+1);
+ }
+ return{campo,leer,norm,textoPlano,ejemplo,errada};
+})();
+
 /* ---------- Orden de temas de 5.º ---------- */
 const FR=LV.map((g,i)=>({eje:'fra',title:'Fracciones: '+['equivalentes y comparar','sumar y restar','decimales, % y × natural'][i],rows:g.rows}));
 const ALL=[TEMAS[0],TEMAS[1],FR[0],TEMAS[2],FR[1],TEMAS[3],FR[2],TEMAS[4],TEMAS[5],TEMAS[6],TEMAS[7],TEMAS[8],TEMAS[9],TEMAS[10],TEMAS[11]];
@@ -945,6 +1132,23 @@ const icons={
  dat:'<path d="M14 40V26h8v14M28 40V14h8v26M42 40V22h8v18" fill="var(--tint)" stroke="var(--acc)" stroke-width="2"/>'
 };
 const icon2=e=>'<svg viewBox="0 0 64 50" aria-hidden="true"><rect x="2" y="2" width="60" height="46" rx="9" fill="#fff" stroke="var(--acc)" stroke-width="2"/>'+icons[e]+'</svg>';
+/* ---------- Contestar en pantalla (se oculta al imprimir) ---------- */
+function campoHTML(id,c,i){
+ const nom='r'+id.replace(/\./g,'_')+'_'+i,lab=t(c.l);
+ if(c.k==='op')return '<fieldset class="int-c"><legend>'+lab+'</legend>'+c.ops.map((o,k)=>'<label class="int-op"><input type="radio" name="'+nom+'" value="'+k+'" data-c="'+i+'"> '+t(o)+'</label>').join('')+'</fieldset>';
+ if(c.k==='ord')return '<fieldset class="int-c"><legend>'+lab+'</legend>'+c.c.map((_,k)=>'<label class="int-ord">'+(k+1)+'.º <select data-c="'+i+'" data-p="'+k+'"><option value="">—</option>'+c.ops.map((o,q)=>'<option value="'+q+'">'+o+'</option>').join('')+'</select></label>').join('')+'</fieldset>';
+ const inp=(p,al)=>'<input type="text" autocomplete="off" spellcheck="false" inputmode="'+(c.k==='n'||c.k==='ent'?'decimal':'text')+'" data-c="'+i+'"'+(p!=null?' data-p="'+p+'"':'')+' aria-label="'+al+'">';
+ if(c.k==='dos')return '<div class="int-c"><span>'+lab+'</span>'+inp(0,'Primer nombre')+'<span>=</span>'+inp(1,'Segundo nombre')+'</div>';
+ return '<label class="int-c"><span>'+lab+'</span>'+inp(null,Resp.textoPlano(c.l))+'</label>';
+}
+function intHTML(id,e){
+ const cs=RESP[id];if(!cs)throw Error('Falta la respuesta en pantalla de '+id);
+ return '<div class="int" data-id="'+id+'" data-intentos="0">'+cs.map((c,i)=>campoHTML(id,c,i)).join('')+
+ '<div class="int-acc"><button type="button" class="va-btn" data-accion="comprobar">Comprobar</button><button type="button" class="va-btn va-sec" data-accion="ver" hidden>Ver respuesta</button></div>'+
+ '<p class="int-msg" role="status" aria-live="polite"></p>'+
+ '<div class="int-auto" hidden><p>Compara con la respuesta: <b>'+t(e.a)+'</b></p><button type="button" class="va-btn" data-accion="bien">Lo tuve bien</button> <button type="button" class="va-btn va-sec" data-accion="mal">Lo tuve mal</button></div>'+
+ '<p class="int-pista" hidden><b>Pista:</b> '+t(e.h)+'</p><p class="int-sol" hidden><b>Respuesta:</b> '+t(e.a)+'</p></div><!--/int-->';
+}
 function make2(tema,ti,i){
  const row=tema.rows[i],n=tema.rows.length,s=stg(n,i);
  if(row.e.length!==3)throw Error("Cada ficha necesita 3 ejercicios: "+row.t);
@@ -952,10 +1156,10 @@ function make2(tema,ti,i){
   const list=(e.fixed||j===0)?e.f:stagedS(e.f,s,j);
   const tip=(s===3&&j>0)?'<div class="tip"><b>Pista:</b> '+t(e.h)+'</div>':'';
   const fg=list.length?figs(list,e.col&&list[0].k!=='blank'):'<div class="figs"><div class="blank"><span>Haz aquí tus cuentas</span></div></div>';
-  return '<section class="ex"><h3><span class="num">'+(j+1)+'</span>'+titles[j]+'</h3><div class="q"><p>'+t(e.q)+'</p>'+tip+'<div class="resp">Respuesta:</div></div>'+fg+'</section>';
+  return '<section class="ex"><h3><span class="num">'+(j+1)+'</span>'+titles[j]+'</h3><div class="q"><p>'+t(e.q)+'</p>'+tip+'<div class="resp">Respuesta:</div>'+intHTML((ti+1)+'.'+(i+1)+'.'+(j+1),e)+'</div>'+fg+'</section>';
  }).join('');
  const keys=row.e.map((e,j)=>'<div class="ans">'+(e.k&&e.k.length?figs(e.k,e.col,true):'<div></div>')+'<div><p><b>'+(j+1)+'. '+t(e.a)+'</b></p><p><b>Pista</b> '+t(e.h)+'</p>'+track+'</div></div>').join('');
- return '<article class="sheet" data-eje="'+tema.eje+'"><div class="top"><header class="head"><div><span class="badge">5.º · México · '+EJE[tema.eje]+' · '+tema.title+' · '+(n===10?stageName(i):STAGE[i])+'</span><h2>'+row.t+'</h2><p class="meta">Tema '+(ti+1)+' · Ficha '+(i+1)+' de '+n+' &nbsp;·&nbsp; Nombre ______________________ &nbsp; Fecha ________</p></div>'+icon2(tema.eje)+'</header>'+exs+'</div>'+
+ return '<article class="sheet" data-eje="'+tema.eje+'"><div class="top"><header class="head"><div><span class="badge">5.º · México · '+EJE[tema.eje]+' · '+tema.title+' · '+(n===10?stageName(i):STAGE[i])+'</span><h2>'+row.t+'</h2><p class="meta">Tema '+(ti+1)+' · Ficha '+(i+1)+' de '+n+' &nbsp;·&nbsp; Nombre ______________________ &nbsp; Fecha ________</p></div>'+icon2(tema.eje)+'</header>'+'<div class="int-marc"><span role="status" aria-live="polite">Correctas: <b class="int-cuenta">0</b> de 3</span><button type="button" class="va-btn va-sec" data-accion="reiniciar">Volver a intentar la ficha</button></div><!--/marc-->'+exs+'</div>'+
  '<div class="key"><div class="cut">✂ Dobla o recorta por esta línea</div><h4>Respuestas para revisar juntos</h4>'+keys+legend+'</div></article>';
 }
 const IDX=[],markup=[];
@@ -997,6 +1201,46 @@ conFuncion("descargarArchivo",()=>Adaptador.archivos.descargarHTML(),document.qu
 const dlgDonar=document.querySelector("#dlgDonar"),dlgAcerca=document.querySelector("#dlgAcerca");
 [["#btnDonar",dlgDonar],["#pieDonar",dlgDonar],["#btnAcerca",dlgAcerca],["#pieAcerca",dlgAcerca]].forEach(([s,d])=>document.querySelector(s).addEventListener("click",()=>d.showModal()));
 document.querySelectorAll("[data-donar]").forEach(b=>b.addEventListener("click",()=>Adaptador.enlaces.abrirDonar(CONFIG.DONAR[b.dataset.donar])));
+
+
+/* Contestar en pantalla: delegación de eventos sobre la ficha visible */
+function valoresDe(box,i,c){
+ if(c.k==='op'){const r=box.querySelector('input[data-c="'+i+'"]:checked');return r?r.value:''}
+ if(c.k==='ord'||c.k==='dos')return [...box.querySelectorAll('[data-c="'+i+'"]')].map(x=>x.value);
+ return box.querySelector('[data-c="'+i+'"]').value;
+}
+function marcarCampo(box,i,r){box.querySelectorAll('[data-c="'+i+'"]').forEach(x=>{if(r===false)x.setAttribute('aria-invalid','true');else x.removeAttribute('aria-invalid')})}
+function contar(){const s=pages.querySelector('.sheet');if(!s)return;const k=s.querySelector('.int-cuenta');if(k)k.textContent=s.querySelectorAll('.int[data-estado="bien"]').length}
+function mensaje(box,txt,clase){const m=box.querySelector('.int-msg');m.textContent=txt;m.className='int-msg'+(clase?' '+clase:'')}
+function fallo(box){
+ const n=Number(box.dataset.intentos)+1;box.dataset.intentos=n;
+ box.querySelector('.int-pista').hidden=false;
+ if(n>=2)box.querySelector('[data-accion="ver"]').hidden=false;
+ mensaje(box,n>=2?'✖ Todavía no. Lee la pista o mira la respuesta.':'✖ Todavía no. Lee la pista e inténtalo otra vez.','no');
+}
+function comprobar(box){
+ if(!FUNCIONES.responderEnPantalla[PLATAFORMA])return;
+ const cs=RESP[box.dataset.id];
+ const rs=cs.map((c,i)=>Resp.campo(c,valoresDe(box,i,c)));
+ box.querySelector('.int-auto').hidden=true;
+ if(rs.some(r=>r===null)){rs.forEach((r,i)=>marcarCampo(box,i,true));mensaje(box,'Completa todas las casillas.','');return}
+ rs.forEach((r,i)=>marcarCampo(box,i,r));
+ if(rs.some(r=>r===false)){box.dataset.estado=box.dataset.estado==='bien'?'':box.dataset.estado||'';fallo(box);contar();return}
+ if(rs.some(r=>r==='auto')){box.querySelector('.int-auto').hidden=false;mensaje(box,'Revisa tú mismo: ¿dice lo mismo que la respuesta?','');return}
+ if(box.dataset.estado!=='visto')box.dataset.estado='bien';
+ mensaje(box,box.dataset.estado==='bien'?'✔ ¡Correcto!':'✔ Correcto, pero ya habías visto la respuesta.','ok');contar();
+}
+pages.addEventListener('click',ev=>{
+ const b=ev.target.closest('[data-accion]');if(!b||!pages.contains(b))return;
+ const box=b.closest('.int'),a=b.dataset.accion;
+ if(a==='reiniciar'){const k=!pages.classList.contains('hide-key');show();setKey(k);return}
+ if(!box)return;
+ if(a==='comprobar')comprobar(box);
+ else if(a==='ver'){box.querySelector('.int-sol').hidden=false;if(box.dataset.estado!=='bien')box.dataset.estado='visto';b.hidden=true;contar()}
+ else if(a==='bien'){box.querySelector('.int-auto').hidden=true;if(box.dataset.estado!=='visto')box.dataset.estado='bien';mensaje(box,box.dataset.estado==='bien'?'✔ ¡Bien!':'✔ Bien, pero ya habías visto la respuesta.','ok');contar()}
+ else if(a==='mal'){box.querySelector('.int-auto').hidden=true;fallo(box)}
+});
+pages.addEventListener('keydown',ev=>{if(ev.key==='Enter'&&ev.target.matches('.int input[type="text"]')){ev.preventDefault();comprobar(ev.target.closest('.int'))}});
 
 /* ========== ARRANQUE ========== */
 show();
