@@ -1,8 +1,8 @@
-# Misiones de matemáticas · 5.º de primaria (México) · v1.03
+# Misiones de matemáticas · 5.º de primaria (México) · v1.04
 
 Fichas imprimibles y gratuitas de matemáticas para 5.º de primaria en México: 15 temas, 90 fichas y 270 ejercicios, con solucionario en la mitad inferior de cada hoja.
 
-**Usarlo en línea:** https://vic-akd.github.io/misiones-matematicas/
+**Usarlo en línea:** https://vic-akd.github.io/misiones-matematicas-5/
 
 **Contestar en pantalla:** cada ejercicio tiene casillas y el botón «Comprobar». Si te equivocas aparece una pista; al segundo error puedes ver la respuesta. Nada se guarda.
 
@@ -27,7 +27,7 @@ Los temas se basan en los contenidos de matemáticas de 5.º de la SEP (Fase 5, 
 | `herramientas/construir.py` | Une todo en un solo HTML. |
 | `pruebas/probar.js` | Pruebas automáticas. |
 
-**Regenerar** (Python 3): `python3 herramientas/construir.py` → `index.html` y `web/misiones-matematicas-v1.03-html.html`.
+**Regenerar** (Python 3): `python3 herramientas/construir.py` → `index.html` y `web/misiones-matematicas-v1.04-html.html`.
 
 **Probar** (Node y Playwright): `node pruebas/probar.js index.html`.
 
@@ -39,7 +39,7 @@ Víctor Arellano · contacto@victorarellano.com · [CC BY-NC-SA 4.0](LICENCIA.md
 
 **Cómo dar crédito** si lo usas o lo modificas:
 
-> Basado en *Misiones de matemáticas* de Víctor Arellano, https://vic-akd.github.io/misiones-matematicas/, CC BY-NC-SA 4.0.
+> Basado en *Misiones de matemáticas* de Víctor Arellano, https://vic-akd.github.io/misiones-matematicas-5/, CC BY-NC-SA 4.0.
 
 Si lo modificaste, agrega «Modificado por <tu nombre>».
 

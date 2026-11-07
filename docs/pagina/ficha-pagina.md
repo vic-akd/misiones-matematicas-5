@@ -1,4 +1,4 @@
-# Misiones de matemáticas · 5.º de primaria (México) · v1.03
+# Misiones de matemáticas · 5.º de primaria (México) · v1.04
 
 **Eslogan:** Fichas de matemáticas para 5.º, listas para imprimir y revisar juntos.
 
@@ -22,11 +22,11 @@
 
 Solo existe la versión HTML. Requisitos: un navegador actual (Chrome, Edge, Firefox o Safari).
 
-**Usar aquí:** https://vic-akd.github.io/misiones-matematicas/
+**Usar aquí:** https://vic-akd.github.io/misiones-matematicas-5/
 
 **Privacidad:** no recaba, guarda, envía ni comparte datos personales.
 **Autor:** Víctor Arellano · contacto@victorarellano.com · Licencia CC BY-NC-SA 4.0.
-**Crédito al reutilizar:** «Basado en *Misiones de matemáticas* de Víctor Arellano, https://vic-akd.github.io/misiones-matematicas/, CC BY-NC-SA 4.0».
+**Crédito al reutilizar:** «Basado en *Misiones de matemáticas* de Víctor Arellano, https://vic-akd.github.io/misiones-matematicas-5/, CC BY-NC-SA 4.0».
 **Donar:** Esta herramienta es gratuita. Si te sirve, puedes apoyar de forma voluntaria. [Donar con Mercado Pago](https://link.mercadopago.com.mx/victorcursos) · [Donar con PayPal](https://paypal.me/donar369)
 
 Capturas reales: `capturas/v1.01/` y `capturas/v1.03/` (promocionales con texto: pendientes).
