@@ -1,0 +1,29 @@
+PASA · Carga sin errores
+PASA · 90 fichas en el selector · 90
+PASA · Contador
+PASA · Insignia con México
+PASA · Cabecera con grado
+PASA · Título
+PASA · Logo en cabecera
+PASA · Sello en ficha
+PASA · Pie
+PASA · Siguiente
+PASA · Anterior y deshabilitado al inicio
+PASA · Mostrar respuestas
+PASA · Abre #dlgDonar desde #btnDonar
+PASA · Abre #dlgDonar desde #pieDonar
+PASA · Abre #dlgAcerca desde #btnAcerca
+PASA · Abre #dlgAcerca desde #pieAcerca
+PASA · Donar abre solo los enlaces exactos · https://link.mercadopago.com.mx/victorcursos https://paypal.me/donar369 https://link.mercadopago.com.mx/victorcursos https://paypal.me/donar369
+PASA · Texto exacto de donar
+PASA · Adaptador bloquea destino no autorizado
+PASA · Etiquetas de los botones de donar
+PASA · Acerca de: aviso de privacidad y contacto
+PASA · CSP connect-src none
+PASA · Descargar este archivo · misiones-matematicas-v1.01-html.html
+PASA · Sin conexiones de red
+PASA · Ninguna ficha se desborda en carta
+PASA · PDF carta de 90 páginas · 90
+PASA · Sin desplazamiento horizontal a 360 px · 360
+PASA · Sin desplazamiento horizontal a 768 px · 768
+PASA · Regresión: 90 fichas idénticas a la entrega anterior (sin insignia ni leyenda)
